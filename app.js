@@ -22,16 +22,19 @@ app.use(express.urlencoded({ extended: false }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-const indexRouter = require('./routes/index.routes');
-app.use('/', indexRouter);
 
 const booksRouter = require('./routes/book.routes');
 app.use('/books', booksRouter);
+
+const indexRouter = require('./routes/index.routes');
+app.use('/', indexRouter);
+
 
 module.exports = app;

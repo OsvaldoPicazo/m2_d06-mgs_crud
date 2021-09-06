@@ -36,6 +36,7 @@ router.get("/:id", (req, res) => {
     })
 })
 
+<<<<<<< HEAD
 // ****************************************************************************************
 // GET route for deleting a book
 // ****************************************************************************************
@@ -54,11 +55,19 @@ router.get("/:id/delete",(req, res)=>{
   .then(deletedBook => res.redirect("/books"))
   .catch(error=> console.log(error))
 })
+=======
+// You already have "/books" in the app.js, herefore you start with a simple "/". This is called the base path for your DB Entity (MongoDB Docuemnt)
+router.get('/', (req, res) => {
+  Book.find()
+   // You have to continue coding the route
+});
+>>>>>>> 2019087b4f9f57b3aba3510749005f564e677318
 
 // ****************************************************************************************
 // GET route for editing a book
 // ****************************************************************************************
 
+<<<<<<< HEAD
 // Problem:The HTML interface does not allow the delete verb to be sent in a request
 /*
 router.put("/:id", (req, res)=>{
@@ -106,4 +115,6 @@ router.post(
   .then(newBook => res.redirect("/books/"))
 })
 
+=======
+>>>>>>> 2019087b4f9f57b3aba3510749005f564e677318
 module.exports = router;
