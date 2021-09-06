@@ -6,12 +6,15 @@ const router = express.Router(); // This is the Router class inside the Express 
 
 // ********* require Book model in order to use it *********
 const Book = require('../models/Book.model')
+const Author = require('../models/Author.model')
 
 router.get(
   "/new",
   (req, res)=>{
-  res.render("new-book")
-})
+    Author.find().then(allAuthors => {
+      res.render("new-book", {allAuthors});
+    }).catch(err => console.log(err))
+ })
 // This is the twin routes way that we saw on the express routes lesson
 /* router.route("/new")
 .get((req, res)=>{
@@ -27,8 +30,9 @@ router.get(
 router.get(
   "/:id",
   (req, res)=>{
-    Book.findById(req.params.id).
-    then((book)=>{
+    Book.findById(req.params.id)
+    .populate("author")
+    .then((book)=>{
       res.render("book-details", book)
     })
   })
