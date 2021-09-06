@@ -6,13 +6,19 @@ const router = express.Router();
 
 // ********* require Book model in order to use it *********
 const Book = require('../models/Book.model');
+// ********* require Book model in order to use it *********
+const Author = require('../models/Author.model');
 
 // When routing, use the inverted pyramid rule: route from the most specific to the least specific route
 
 router.get(
   "/new",
   (req, res)=>{
-  res.render("new-book")
+    Author.find()
+    .then(authors => {
+      res.render("new-book", {authors});
+    })
+    .catch(err => console.log(err));
 })
 
 // This is the twin routes way that we saw on the express routes lesson
@@ -30,13 +36,13 @@ router.get(
 // GET route for displaying the book details page
 // ****************************************************************************************
 router.get("/:id", (req, res) => {
-  Book.findById(req.params.id)
+  Book.findById(req.params.id) 
+    .populate("author")   // populate author object to make it an accesible object
     .then((book) => {
       res.render('book-details', book)
     })
 })
 
-<<<<<<< HEAD
 // ****************************************************************************************
 // GET route for deleting a book
 // ****************************************************************************************
@@ -55,19 +61,12 @@ router.get("/:id/delete",(req, res)=>{
   .then(deletedBook => res.redirect("/books"))
   .catch(error=> console.log(error))
 })
-=======
-// You already have "/books" in the app.js, herefore you start with a simple "/". This is called the base path for your DB Entity (MongoDB Docuemnt)
-router.get('/', (req, res) => {
-  Book.find()
-   // You have to continue coding the route
-});
->>>>>>> 2019087b4f9f57b3aba3510749005f564e677318
+
 
 // ****************************************************************************************
 // GET route for editing a book
 // ****************************************************************************************
 
-<<<<<<< HEAD
 // Problem:The HTML interface does not allow the delete verb to be sent in a request
 /*
 router.put("/:id", (req, res)=>{
@@ -115,6 +114,4 @@ router.post(
   .then(newBook => res.redirect("/books/"))
 })
 
-=======
->>>>>>> 2019087b4f9f57b3aba3510749005f564e677318
 module.exports = router;

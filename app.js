@@ -33,6 +33,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const booksRouter = require('./routes/book.routes');
 app.use('/books', booksRouter);
 
+const authorRouter = require('./routes/author.routes');
+app.use('/authors', authorRouter);
+
 const indexRouter = require('./routes/index.routes');
 app.use('/', indexRouter);
 

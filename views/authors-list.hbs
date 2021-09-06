@@ -1,0 +1,13 @@
+<h1>Authors PAGE</h1>
+<a href="/authors/new">
+  <button>Add a new author</button>
+</a>
+<br>
+<br>
+{{#each authors}}
+<h1 class="authorname"><a href = "/authors/{{ this._id}}"> {{this.name}} {{this.surname}}</a></h1>
+<a href="/authors/{{ _id}}/edit"> <button>EDIT this author</button></a>
+<a href="/authors/{{ _id}}/delete"> <button>DELETE this author</button></a>
+<br>
+<br>
+{{/each}}

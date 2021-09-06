@@ -6,7 +6,7 @@ const bookSchema = new Schema(
     // Desine Book schema here
     title: String,
     description: String,
-    author: String,
+    author: {type: Schema.Types.ObjectId, ref: "Author"}  , //_id. Schema is a Mongoose datatype
     rating: Number
   },
   {
