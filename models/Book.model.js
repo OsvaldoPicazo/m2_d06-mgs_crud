@@ -4,6 +4,10 @@ const { Schema, model } = mongoose;
 const bookSchema = new Schema(
   {
     // Desine Book schema here
+    title: String,
+    description: String,
+    author: String,
+    rating: Number
   },
   {
     timestamps: true
