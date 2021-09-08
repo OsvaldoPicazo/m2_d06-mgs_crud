@@ -37,7 +37,7 @@ router.get(
 // ****************************************************************************************
 router.get("/:id", (req, res) => {
   Book.findById(req.params.id) 
-    .populate("author")   // populate author object to make it an accesible object
+    .populate("author")   // populate author object to make it an accessible object
     .then((book) => {
       res.render('book-details', book)
     })
